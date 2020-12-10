@@ -74,6 +74,7 @@ export default {
 
   .title {
     text-align: center;
+    margin-top: 40px;
   }
 
   .content {
@@ -85,6 +86,8 @@ export default {
     padding-right: 20px;
     text-align: right;
     opacity: 0.6;
+    margin-top: 40px;
+    margin-bottom: 60px;
   }
 
   img {

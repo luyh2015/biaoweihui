@@ -9,11 +9,11 @@
           </van-swipe-item>
         </van-swipe>
         <van-list class="list-wrap" v-model="loading" :finished="finished" finished-text="~我是有底线的~" @load="articleList">
-          <van-cell value="内容" is-link v-for="(item,index) in list" :key="index" :title="item.title">
+          <van-cell value="内容" is-link v-for="(item,index) in list" :key="index" :title="item.title"  @click="articleDetail(item.id)">
             <!-- 使用 title 插槽来自定义标题 -->
             <template #title>
               <span class="custom-title">{{ item.title }}</span><br />
-              <span class="content-title" @click="articleDetail(item.id)">{{ item.content }}</span>
+              <span class="content-title">{{ item.content }}</span>
             </template>
             <van-tag type="danger">置顶</van-tag>
           </van-cell>
