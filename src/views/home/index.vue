@@ -13,7 +13,7 @@
             <!-- 使用 title 插槽来自定义标题 -->
             <template #title>
               <span class="custom-title">{{ item.title }}</span><br />
-              <span class="content-title">{{ item.content }}</span>
+              <span class="content-title" @click="articleDetail(item.id)">{{ item.content }}</span>
             </template>
             <van-tag type="danger">置顶</van-tag>
           </van-cell>
@@ -42,8 +42,8 @@ export default {
       loading: false,
       finished: false,
       images: [
-        'http://m.shizhuangjian.cn/d/file/hwjj/2016-11-23/ff698db765593e7de3c8d852fc538e57.jpg',
-        'http://m.shizhuangjian.cn/d/file/hwjj/2017-05-19/941744305e2124c87f8bafe4eb60ba33.jpg'
+        'https://zfcenter.oss-cn-beijing.aliyuncs.com/static/biaoweihui/img/1.jpg',
+        'https://zfcenter.oss-cn-beijing.aliyuncs.com/static/biaoweihui/img/2.jpg'
       ],
       tabList: ['简介', '食字', '妆字', '健字', '知识', '消字', '械字', '药字', '特字', '商标', '专利', '品牌'],
       activeTab: ''
@@ -63,14 +63,20 @@ export default {
       const query = new AV.Query('article')
       query.addDescending('createdAt')
       query.find().then((res) => {
+        console.log(`res`, res);
         this.list = []
         _.forEach(res, element => {
+          element.attributes['id'] = element.id;
+          element.attributes.content = element.attributes.content.replaceAll('&ensp;', '');
           this.list.push(element.attributes)
         })
         this.loading = false;
         this.finished = true;
       })
     },
+    articleDetail(id) {
+      this.$router.push({path: `/detail?id=${id}`})
+    }
   }
 }
 </script>
@@ -107,9 +113,9 @@ export default {
     max-height: 187.5px;
   }
 
-  .list-wrap {
-    min-height: calc(100vh - 200px);
-  }
+  // .list-wrap {
+  //   min-height: calc(100vh - 200px);
+  // }
 
   .custom-title {
     font-size: 0.4rem;

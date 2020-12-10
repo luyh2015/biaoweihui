@@ -41,6 +41,12 @@ export const constantRouterMap = [
         name: 'About',
         component: () => import('@/views/home/about'),
         meta: { title: '咨询', keepAlive: false }
+      },
+      {
+        path: '/detail',
+        name: 'Detail',
+        component: () => import('@/views/detail/index'),
+        meta: { title: '文章详情', keepAlive: false }
       }
     ]
   }
